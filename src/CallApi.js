@@ -1,54 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Input from "./Input";
 import Region from "./Region";
-
-const CountryFlag = (props) => {
-  return (
-    <>
-      <div>
-        <img
-          src={props.country[0].flags.png}
-          alt={"flag of " + props.country[0].name.common}
-        />
-      </div>
-    </>
-  );
-};
-
-const CountryTitle = (props) => {
-  return <h1>{props.title}</h1>;
-};
-
-const CountryOfficialName = (props) => {
-  return <h2>Official name: {props.name}</h2>;
-};
-
-const CountryNativeName = (props) => {
-    const names = () => {
-      return Object.values(props.name).map(v => <li>{v.official}</li>)
-    }
-    return (
-      <>
-      <h3>Native name(s): </h3>
-      <ul>
-        {names()}
-      </ul>
-    </>
-  );
-};
-
-const PopulationDensity = (props) => {
-  return (
-    <div>population density: {props.population}</div>
-  )
-}
-
-const JapaneseTranslation = (props) => {
-  return (
-    <div>Japanese Translation: {props.japanese}</div>
-  )
-}
+import CountryFlag from "./CountryFlag";
+import CountryTitle from "./CountryTitle";
+import CountryOfficialName from "./CountryOfficialName";
+import PopulationDensity from "./PopulationDensity";
+import JapaneseTranslation from "./JapaneseTranslation";
+import CountryNativeName from "./CountryNativeName";
+import FlagGridItem from "./FlagGridItem";
 
 const CallApi = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +15,7 @@ const CallApi = (props) => {
   const [countries, setcountries] = useState(null);
   const [region, setRegion] = useState("Europe");
   const [searchInput, setSearchInput] = useState("");
+  const [regionChange, setRegionChange] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -63,7 +23,7 @@ const CallApi = (props) => {
         method: "GET",
         url: !!searchInput
           ? `https://restcountries.com/v3.1/name/${searchInput}?fullText=true`
-          : `https://restcountries.com/v3.1/all`
+          : `https://restcountries.com/v3.1/all`,
       };
 
       setIsLoading(true);
@@ -75,27 +35,29 @@ const CallApi = (props) => {
             response.data.filter((cntry) => cntry.region === region)
           );
           setHasError(false);
+          // debugger
+          !!regionChange && setSearchInput("");
         })
         .catch(() => setHasError(true))
         .finally(() => {
-          setIsLoading(false)
+          setIsLoading(false);
+          setRegionChange(false);
         });
     }
     fetchData().catch(console.error);
-  }, [searchInput, region]);
+  }, [searchInput, region, regionChange]);
 
   let selectedCountry = countries?.filter((c) => c.name.common === searchInput);
 
   return (
     <>
-      <Region region={region} setRegion={setRegion} />
+      <Region
+        region={region}
+        setRegion={setRegion}
+        setRegionChange={setRegionChange}
+      />
       {countries && (
         <>
-          <Input
-            searchInput={searchInput}
-            countries={countries}
-            setSearchInput={setSearchInput}
-          />
           {!isLoading && hasError && <div>no match</div>}
           {isLoading && <div>spinner</div>}
           {searchInput && selectedCountry[0] && (
@@ -103,21 +65,35 @@ const CallApi = (props) => {
               <CountryTitle title={selectedCountry[0].name.common} />
               <CountryFlag country={selectedCountry} />
               <CountryOfficialName name={selectedCountry[0].name.official} />
-              <PopulationDensity population={selectedCountry[0].population}/>
-              {selectedCountry[0].translations.jpn && <JapaneseTranslation japanese={selectedCountry[0].translations.jpn?.official}/> }
+              <PopulationDensity population={selectedCountry[0].population} />
+              {selectedCountry[0].translations.jpn && (
+                <JapaneseTranslation
+                  japanese={selectedCountry[0].translations.jpn?.official}
+                />
+              )}
               <CountryNativeName name={selectedCountry[0].name.nativeName} />
             </>
           )}
-
-          <div>
-            <p>
-              {/* {countries.map(c => 
-                  c.population
-                )} */}
-              ---a .map(c ={">"} anchor for each item, onClick sets the
-              searchinput ) of filtered countries here---
-            </p>
-          </div>
+          {!searchInput && (
+            <div>
+              {countries.map((c) => {
+                return (
+                  <div key={c.name.common}>
+                    {/* <img
+                      value={c.name.common}
+                      src={c.flags.png}
+                      alt={"flag of " + c.name.common}
+                      onClick={(e) =>
+                        setSearchInput(e.target.attributes.value.value)
+                      }
+                    />
+                    {c.name.common} */}
+                    <FlagGridItem flag={c.flags.png} countryName={c.name.common} setSearchInput={setSearchInput} />
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
     </>

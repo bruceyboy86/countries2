@@ -7,7 +7,8 @@ const Region = (props) => {
         id="regionSearch"
         aria-label="Choose a Region"
         onChange={(e) => {
-          props.setRegion(e.target.value);
+          props.setRegion(e.target.value),
+          props.setRegionChange(true)
         }}
         value={props.region}
       >
