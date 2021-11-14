@@ -9,6 +9,10 @@ import JapaneseTranslation from "./JapaneseTranslation";
 import CountryNativeName from "./CountryNativeName";
 import FlagGridItem from "./FlagGridItem";
 
+const Clear = (props) => {
+  return <button onClick={() => props.setSearchInput("")  }>clear button</button>
+};
+
 const CallApi = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -35,7 +39,6 @@ const CallApi = (props) => {
             response.data.filter((cntry) => cntry.region === region)
           );
           setHasError(false);
-          // debugger
           !!regionChange && setSearchInput("");
         })
         .catch(() => setHasError(true))
@@ -72,6 +75,7 @@ const CallApi = (props) => {
                 />
               )}
               <CountryNativeName name={selectedCountry[0].name.nativeName} />
+              <Clear setSearchInput={setSearchInput} />
             </>
           )}
           {!searchInput && (
@@ -79,16 +83,11 @@ const CallApi = (props) => {
               {countries.map((c) => {
                 return (
                   <div key={c.name.common}>
-                    {/* <img
-                      value={c.name.common}
-                      src={c.flags.png}
-                      alt={"flag of " + c.name.common}
-                      onClick={(e) =>
-                        setSearchInput(e.target.attributes.value.value)
-                      }
+                    <FlagGridItem
+                      flag={c.flags.png}
+                      countryName={c.name.common}
+                      setSearchInput={setSearchInput}
                     />
-                    {c.name.common} */}
-                    <FlagGridItem flag={c.flags.png} countryName={c.name.common} setSearchInput={setSearchInput} />
                   </div>
                 );
               })}
