@@ -1,9 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
 .App {
   font-family: sans-serif;
   text-align: center;
 }
+body {
+  background-image: linear-gradient(205deg, rgb(169, 201, 255) 0%, rgb(255, 187, 236) 100%);
+}
+body *{
+  font-family:'Roboto', sans-serif;
+}
+
 img {
   margin: auto;
+}
+
+li {
+  display: block;
+}
+ul {
+  padding: 0;
+}
+
+#spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+div#spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+div#FlagGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  margin: 2em;
+}
+@media screen and (max-width: 400px) {
+  div#FlagGrid {
+    grid-template-columns: auto;
+  }
 }
 
 /*  https://piccalil.li/blog/a-modern-css-reset/ */

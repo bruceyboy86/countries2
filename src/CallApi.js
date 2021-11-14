@@ -56,11 +56,11 @@ const CallApi = (props) => {
         setRegion={setRegion}
         setRegionChange={setRegionChange}
       />
+      {isLoading && <div id="spinnerContainer"><div id="spinner"></div></div>}
       {countries && (
         <>
           {!isLoading && hasError && <div>no match</div>}
-          {isLoading && <div>spinner</div>}
-          {searchInput && selectedCountry[0] && (
+          {!isLoading && searchInput && selectedCountry[0] && (
             <>
               <CountryTitle title={selectedCountry[0].name.common} />
               <CountryFlag country={selectedCountry} />
@@ -75,8 +75,8 @@ const CallApi = (props) => {
               <Clear setSearchInput={setSearchInput} />
             </>
           )}
-          {!searchInput && (
-            <div>
+          {!isLoading && !searchInput && (
+            <div id="FlagGrid">
               {countries.map((c) => {
                 return (
                   <div key={c.name.common}>

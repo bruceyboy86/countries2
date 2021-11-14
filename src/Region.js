@@ -1,7 +1,7 @@
 const Region = (props) => {
   return (
-    <>
-      <label htmlFor="regionSearch">Choose a Region:</label>
+    <div>
+      <label htmlFor="regionSearch">Choose a Region: </label>
       <select
         name="regions"
         id="regionSearch"
@@ -18,7 +18,7 @@ const Region = (props) => {
         <option value="Europe">Europe</option>
         <option value="Oceania">Oceania</option>
       </select>
-    </>
+    </div>
   );
 };
 
