@@ -1,7 +1,7 @@
 {
-  "name": "react",
+  "name": "countries",
   "version": "1.0.0",
-  "description": "React example starter project",
+  "description": "Api displaying list of countries",
   "keywords": [
     "react",
     "starter"

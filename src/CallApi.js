@@ -8,10 +8,7 @@ import PopulationDensity from "./PopulationDensity";
 import JapaneseTranslation from "./JapaneseTranslation";
 import CountryNativeName from "./CountryNativeName";
 import FlagGridItem from "./FlagGridItem";
-
-const Clear = (props) => {
-  return <button onClick={() => props.setSearchInput("")  }>clear button</button>
-};
+import Clear from "./Clear";
 
 const CallApi = (props) => {
   const [isLoading, setIsLoading] = useState(true);
