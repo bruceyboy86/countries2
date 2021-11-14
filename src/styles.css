@@ -1,9 +1,16 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+div#root {
+  display: flex;
+  justify-content: center;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  max-width: 930px;
 }
+
 body {
   background-image: linear-gradient(205deg, rgb(169, 201, 255) 0%, rgb(255, 187, 236) 100%);
 }
@@ -13,6 +20,9 @@ body *{
 
 img {
   margin: auto;
+}
+img.flagGridItem {
+  cursor: pointer;
 }
 
 li {
@@ -37,6 +47,15 @@ div#spinnerContainer {
   justify-content: center;
   align-items: center;
   height: 85vh;
+}
+
+button.clearButton, select#regionSearch {
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+select#regionSearch:focus-visible {
+  outline: none;
 }
 
 @keyframes spin {

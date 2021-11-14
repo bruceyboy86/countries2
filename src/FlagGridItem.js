@@ -4,6 +4,7 @@ const FlagGridItem = (props) => {
   return (
     <>
       <img
+        className="flagGridItem"
         value={props.countryName}
         src={props.flag}
         alt={"flag of " + props.countryName}
