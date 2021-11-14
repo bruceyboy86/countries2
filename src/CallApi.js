@@ -25,8 +25,34 @@ const CountryOfficialName = (props) => {
 };
 
 const CountryNativeName = (props) => {
-  return <h2>Native name: {props.name}</h2>;
+  function loopNames(){
+    for(var key in props.name){
+      return(
+        <li>
+          {props.name[key].common}
+        </li>
+      )
+    }
+  }
+  return (
+    <>
+      <h3>Native name(s): </h3>
+      <ul>{loopNames()}</ul>
+    </>
+  );
 };
+
+const PopulationDensity = (props) => {
+  return (
+    <div>population density: {props.population}</div>
+  )
+}
+
+const JapaneseTranslation = (props) => {
+  return (
+    <div>Japanese Translation: {props.japanese}</div>
+  )
+}
 
 const CallApi = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -62,10 +88,6 @@ const CallApi = (props) => {
 
   let selectedCountry = countries?.filter((c) => c.name.common === searchInput);
 
-  // console.log(
-  //   selectedCountry && selectedCountry[0]?.name.nativeName.map((n) => n)
-  // );
-
   return (
     <>
       <Region region={region} setRegion={setRegion} />
@@ -83,12 +105,17 @@ const CallApi = (props) => {
               <CountryTitle title={selectedCountry[0].name.common} />
               <CountryFlag country={selectedCountry} />
               <CountryOfficialName name={selectedCountry[0].name.official} />
-              <CountryNativeName name={selectedCountry[0].name.official} />
+              <CountryNativeName name={selectedCountry[0].name.nativeName} />
+              <PopulationDensity population={selectedCountry[0].population}/>
+              {selectedCountry[0].translations.jpn && <JapaneseTranslation japanese={selectedCountry[0].translations.jpn?.official}/> }
             </>
           )}
 
           <div>
             <p>
+              {/* {countries.map(c => 
+                  c.population
+                )} */}
               ---a .map(c ={">"} anchor for each item, onClick sets the
               searchinput ) of filtered countries here---
             </p>
