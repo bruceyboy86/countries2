@@ -25,19 +25,15 @@ const CountryOfficialName = (props) => {
 };
 
 const CountryNativeName = (props) => {
-  function loopNames(){
-    for(var key in props.name){
-      return(
-        <li>
-          {props.name[key].common}
-        </li>
-      )
+    const names = () => {
+      return Object.values(props.name).map(v => <li>{v.official}</li>)
     }
-  }
-  return (
-    <>
+    return (
+      <>
       <h3>Native name(s): </h3>
-      <ul>{loopNames()}</ul>
+      <ul>
+        {names()}
+      </ul>
     </>
   );
 };
@@ -81,7 +77,9 @@ const CallApi = (props) => {
           setHasError(false);
         })
         .catch(() => setHasError(true))
-        .finally(() => setIsLoading(false));
+        .finally(() => {
+          setIsLoading(false)
+        });
     }
     fetchData().catch(console.error);
   }, [searchInput, region]);
@@ -105,9 +103,9 @@ const CallApi = (props) => {
               <CountryTitle title={selectedCountry[0].name.common} />
               <CountryFlag country={selectedCountry} />
               <CountryOfficialName name={selectedCountry[0].name.official} />
-              <CountryNativeName name={selectedCountry[0].name.nativeName} />
               <PopulationDensity population={selectedCountry[0].population}/>
               {selectedCountry[0].translations.jpn && <JapaneseTranslation japanese={selectedCountry[0].translations.jpn?.official}/> }
+              <CountryNativeName name={selectedCountry[0].name.nativeName} />
             </>
           )}
 
