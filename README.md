@@ -1,13 +1,61 @@
-# Countries
 
-todo:
+# Countries by Bruce
 
-- Allow the user to choose a region of the world (Asia, Europe, Oceania, etc)
-- Once a region is chosen, allow the user to select a country within that region (e.g. if the user chooses Europe, they can then choose France, Germany and others, but not New Zealand)
-- Once the user chooses a country, display the following information about that country:
-  _ As a page title, the country’s common name and flag, e.g. Germany 🇩🇪
-  _ Its official name, e.g. Federal Republic of Germany
-  _ Its native name(s), e.g. Deutschland
-  _ Its name(s) in Japanese, if available, e.g. ドイツ or ドイツ連邦共和国
-  _ Its flag as an image
-  _ Its population density (population / area)
+A collection of the countries of the world, filtered by region. Each Country shows information about the population native name and more.
+
+
+## Demo
+
+https://countries-git-main-bruceyboy86.vercel.app/
+
+
+## Tech Stack
+
+**Client:** React
+
+**Server:** Node
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/bruceyboy86/countries2.git
+```
+
+Go to the project directory
+
+```bash
+  cd countries2
+```
+
+Install dependencies
+
+```bash
+  yarn install
+```
+
+Start the server
+
+```bash
+  yarn start
+```
+
+
+## Status
+
+[![Vercel](http://therealsujitk-vercel-badge.vercel.app/?app=therealsujitk-vercel-badge)](https://countries-git-main-bruceyboy86.vercel.app/)
+
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
+
+## Author
+
+- [@bruceyboy86](https://github.com/bruceyboy86/)
+
+
+## 🔗 Links
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/BruceyBoyD/)
+
+https://codepen.io/bruceyboy86
