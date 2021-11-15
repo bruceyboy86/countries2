@@ -2,13 +2,13 @@ import React from "react";
 
 const CountryFlag = (props) => {
   return (
-    <>
-      <div>
-        <img
-          src={props.country[0].flags.png}
-          alt={"flag of " + props.country[0].name.common} />
-      </div>
-    </>
+    <figure>
+      <img
+        aria-label={"flag of " + props.country[0].name.common}
+        alt={"flag of " + props.country[0].name.common}
+        src={props.country[0].flags.png}
+      />
+    </figure>
   );
 };
 

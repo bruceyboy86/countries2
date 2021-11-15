@@ -3,9 +3,9 @@ import CallApi from "./CallApi";
 
 export default function App() {
   return (
-    <div className="App">
-      <h1>Countries</h1>
+    <main role="region" aria-labelledby="countries" className="App">
+      <h1 id="countries">Countries</h1>
       <CallApi />
-    </div>
+    </main>
   );
 }

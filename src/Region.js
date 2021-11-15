@@ -5,18 +5,18 @@ const Region = (props) => {
       <select
         name="regions"
         id="regionSearch"
-        aria-label="Choose a Region"
+        aria-label="Choose a Region for a selection of countries"
         onChange={(e) => {
           props.setRegion(e.target.value),
           props.setRegionChange(true)
         }}
         value={props.region}
       >
-        <option value="Africa">Africa</option>
-        <option value="Americas">Americas</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
+        <option aria-label="Africa" value="Africa">Africa</option>
+        <option aria-label="Americas" value="Americas">Americas</option>
+        <option aria-label="Asia" value="Asia">Asia</option>
+        <option aria-label="Europe" value="Europe">Europe</option>
+        <option aria-label="Oceania" value="Oceania">Oceania</option>
       </select>
     </div>
   );

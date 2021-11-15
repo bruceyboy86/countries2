@@ -76,7 +76,7 @@ const CallApi = (props) => {
             </>
           )}
           {!isLoading && !searchInput && (
-            <div id="FlagGrid">
+            <div role="region" aria-label="flag grid" id="FlagGrid">
               {countries.map((c) => {
                 return (
                   <div key={c.name.common}>
